@@ -1,26 +1,20 @@
-export interface NavLink {
-  /** Link label */
-  label: string;
-  /** Link URL */
-  href: string;
-  /** Nested links for dropdown */
-  children?: NavLink[];
-}
+// Re-export NavLink from Header for consistency
+export type { NavLink } from '../Header/Header.types';
 
-export interface NavigationProps {
-  /** Navigation links */
-  links: NavLink[];
-  /** Orientation of the navigation */
-  orientation?: 'horizontal' | 'vertical';
+export interface NavDropdownProps {
+  /** Dropdown label */
+  label: string;
+  /** Dropdown items */
+  items: import('../Header/Header.types').NavLink[];
   /** Additional CSS classes */
   className?: string;
 }
 
-export interface NavDropdownProps {
-  /** Dropdown trigger label */
-  label: string;
-  /** Dropdown items */
-  items: NavLink[];
+export interface NavigationProps {
+  /** Navigation links */
+  links: import('../Header/Header.types').NavLink[];
+  /** Orientation of the navigation */
+  orientation?: 'horizontal' | 'vertical';
   /** Additional CSS classes */
   className?: string;
 }

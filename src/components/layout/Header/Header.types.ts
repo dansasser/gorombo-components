@@ -1,15 +1,24 @@
 import type { ReactNode } from 'react';
-import type { NavLink } from '../Navigation/Navigation.types';
+
+export interface NavLink {
+  label: string;
+  href: string;
+  children?: NavLink[];
+}
 
 export interface HeaderProps {
-  /** Logo element or text */
+  /** Logo element (SVG or image) */
   logo: ReactNode;
+  /** Logo text displayed next to logo */
+  logoText?: string;
   /** Link for the logo */
   logoHref?: string;
-  /** Navigation links */
+  /** Navigation links (supports nested dropdowns) */
   links?: NavLink[];
-  /** Call-to-action button(s) */
-  cta?: ReactNode;
+  /** Right-side action buttons */
+  actions?: ReactNode;
+  /** Additional icon buttons (e.g., cart) */
+  iconButtons?: ReactNode;
   /** Make header sticky */
   sticky?: boolean;
   /** Hide header on scroll down */

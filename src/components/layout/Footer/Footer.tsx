@@ -1,105 +1,74 @@
 import { cn } from '../../../utils/cn';
-import { Container } from '../../primitives/Container';
 import type { FooterProps } from './Footer.types';
 
 export function Footer({
   logo,
-  sections = [],
+  brandName,
+  tagline,
+  links = [],
   social = [],
   copyright,
-  background = 'light',
   className,
-  children,
 }: FooterProps) {
-  const isDark = background === 'dark';
-
   return (
     <footer
       className={cn(
-        'border-t pt-16 pb-8',
-        isDark
-          ? 'bg-background-dark border-white/10 text-white'
-          : 'bg-background-light border-gray-100 text-text-main',
+        'bg-white border-t border-gray-100 pt-16 pb-8',
         className
       )}
     >
-      <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Logo and description */}
-          {logo && (
-            <div className="md:col-span-1">
-              {logo}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Top section: Logo/tagline left, links right */}
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
+          {/* Logo and tagline */}
+          <div className="flex flex-col items-center md:items-start">
+            <div className="flex items-center gap-2 mb-2">
+              {logo && <div className="w-8 h-8 text-primary">{logo}</div>}
+              {brandName && (
+                <span className="font-display font-bold text-xl text-text-main">
+                  {brandName}
+                </span>
+              )}
+            </div>
+            {tagline && (
+              <p className="text-text-sub text-sm max-w-xs text-center md:text-left">
+                {tagline}
+              </p>
+            )}
+          </div>
+
+          {/* Inline links */}
+          {links.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-8">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-text-sub hover:text-primary text-sm font-medium transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           )}
-
-          {/* Link sections */}
-          {sections.map((section) => (
-            <div key={section.title}>
-              <h4
-                className={cn(
-                  'font-bold mb-4',
-                  isDark ? 'text-white' : 'text-text-main'
-                )}
-              >
-                {section.title}
-              </h4>
-              <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className={cn(
-                        'text-sm transition-colors',
-                        isDark
-                          ? 'text-gray-400 hover:text-white'
-                          : 'text-text-sub hover:text-primary'
-                      )}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
         </div>
 
-        {/* Additional content */}
-        {children}
-
-        {/* Bottom bar */}
-        <div
-          className={cn(
-            'mt-12 pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4',
-            isDark ? 'border-white/10' : 'border-gray-100'
-          )}
-        >
+        {/* Bottom bar: Copyright and social */}
+        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Copyright */}
           {copyright && (
-            <p
-              className={cn(
-                'text-sm',
-                isDark ? 'text-gray-400' : 'text-text-sub'
-              )}
-            >
-              {copyright}
-            </p>
+            <p className="text-text-sub text-sm">{copyright}</p>
           )}
 
           {/* Social links */}
           {social.length > 0 && (
-            <div className="flex items-center gap-4">
+            <div className="flex gap-4">
               {social.map((item) => (
                 <a
                   key={item.platform}
                   href={item.href}
                   aria-label={item.platform}
-                  className={cn(
-                    'p-2 rounded-lg transition-colors',
-                    isDark
-                      ? 'text-gray-400 hover:text-white hover:bg-white/10'
-                      : 'text-text-sub hover:text-primary hover:bg-background-off'
-                  )}
+                  className="text-text-sub hover:text-primary transition-colors"
                 >
                   {item.icon}
                 </a>
@@ -107,7 +76,7 @@ export function Footer({
             </div>
           )}
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }
