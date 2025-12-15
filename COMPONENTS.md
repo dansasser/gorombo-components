@@ -327,13 +327,14 @@ import { PricingCard } from 'gorombo-components';
 
 ### Header
 
-Sticky navigation header with mobile drawer.
+Sticky navigation header with CSS hover-based dropdowns and built-in mobile drawer.
 
 ```tsx
-import { Header } from 'gorombo-components';
+import { Header, Button } from 'gorombo-components';
 
 <Header
-  logo={<img src="/logo.svg" alt="Logo" />}
+  logo={<MySvgLogo />}
+  logoText="Gorombo"
   logoHref="/"
   links={[
     { label: 'Home', href: '/' },
@@ -347,7 +348,8 @@ import { Header } from 'gorombo-components';
       ]
     },
   ]}
-  cta={<Button variant="primary">Contact</Button>}
+  actions={<Button variant="primary">Contact</Button>}
+  iconButtons={<CartIconButton />}
   sticky
   hideOnScroll
 />
@@ -355,12 +357,19 @@ import { Header } from 'gorombo-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `logo` | `ReactNode` | required | Logo element |
+| `logo` | `ReactNode` | required | Logo SVG/image element |
+| `logoText` | `string` | - | Brand name text next to logo |
 | `logoHref` | `string` | `'/'` | Logo link |
-| `links` | `NavLink[]` | `[]` | Navigation links |
-| `cta` | `ReactNode` | - | CTA button(s) |
+| `links` | `NavLink[]` | `[]` | Navigation links (supports nested dropdowns) |
+| `actions` | `ReactNode` | - | Right-side action buttons |
+| `iconButtons` | `ReactNode` | - | Additional icon buttons (e.g., cart) |
 | `sticky` | `boolean` | `true` | Stick to top |
 | `hideOnScroll` | `boolean` | `false` | Hide on scroll down |
+
+**Features:**
+- Desktop: CSS hover-based dropdowns (no JS click handlers)
+- Mobile: Built-in slide-in drawer with expandable submenus
+- Mobile submenus have border-left visual indicator
 
 ---
 
@@ -431,45 +440,46 @@ function App() {
 
 ### Footer
 
-Page footer with link sections and social icons.
+Simple page footer with logo/tagline, inline links, and social icons.
 
 ```tsx
 import { Footer } from 'gorombo-components';
 
 <Footer
-  logo={<img src="/logo.svg" alt="Logo" />}
-  sections={[
-    {
-      title: 'Product',
-      links: [
-        { label: 'Features', href: '/features' },
-        { label: 'Pricing', href: '/pricing' },
-      ]
-    },
-    {
-      title: 'Company',
-      links: [
-        { label: 'About', href: '/about' },
-        { label: 'Contact', href: '/contact' },
-      ]
-    },
+  logo={<MySvgLogo />}
+  brandName="Gorombo"
+  tagline="Building the future of digital commerce."
+  links={[
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' },
+    { label: 'Contact', href: '/contact' },
   ]}
   social={[
-    { platform: 'Twitter', href: 'https://twitter.com/...', icon: <Icon name="..." /> },
-    { platform: 'GitHub', href: 'https://github.com/...', icon: <Icon name="..." /> },
+    { platform: 'Twitter', href: 'https://twitter.com/...', icon: <TwitterIcon /> },
+    { platform: 'GitHub', href: 'https://github.com/...', icon: <GitHubIcon /> },
   ]}
   copyright="© 2024 Gorombo. All rights reserved."
-  background="light"
 />
 ```
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `logo` | `ReactNode` | - | Logo element |
-| `sections` | `FooterSection[]` | `[]` | Link sections |
-| `social` | `SocialLink[]` | `[]` | Social media links |
+| `logo` | `ReactNode` | - | Logo SVG/image element |
+| `brandName` | `string` | - | Brand name text next to logo |
+| `tagline` | `string` | - | Tagline/description below logo |
+| `links` | `FooterLink[]` | `[]` | Inline links (Privacy, Terms, etc.) |
+| `social` | `SocialLink[]` | `[]` | Social media links with icons |
 | `copyright` | `string` | - | Copyright text |
-| `background` | `'light' \| 'dark'` | `'light'` | Background color |
+
+**FooterLink:**
+```ts
+{ label: string; href: string }
+```
+
+**SocialLink:**
+```ts
+{ platform: string; href: string; icon: ReactNode }
+```
 
 ---
 
