@@ -1,2 +1,5 @@
 export { Header } from './Header';
-export type { HeaderProps, NavLink } from './Header.types';
+export { HeaderActions } from './HeaderActions';
+export { HeaderWithDrawer } from './HeaderWithDrawer';
+export type { HeaderProps, NavLink, LegacyHeaderProps } from './Header.types';
+export type { HeaderActionsProps } from './HeaderActions';

@@ -1,2 +1,2 @@
-export { Navigation } from './Navigation';
-export type { NavigationProps, NavLink, NavDropdownProps } from './Navigation.types';
+export { Navigation, NavDropdown } from './Navigation';
+export type { NavigationProps, NavLink, NavDropdownProps, DropdownTrigger } from './Navigation.types';

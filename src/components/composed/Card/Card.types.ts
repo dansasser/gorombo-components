@@ -14,8 +14,10 @@ export interface CardProps extends ComponentPropsWithoutRef<'div'> {
 }
 
 export interface CardHeaderProps {
-  /** Icon or image to display */
+  /** Icon or image to display (use slot="icon" in Astro) */
   icon?: ReactNode;
+  /** Material Symbols icon name - serializable alternative to icon prop */
+  iconName?: string;
   /** Card title */
   title: string;
   /** Card subtitle or description */

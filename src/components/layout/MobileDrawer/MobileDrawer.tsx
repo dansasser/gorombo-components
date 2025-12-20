@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { cn } from '../../../utils/cn';
 import { Icon } from '../../primitives/Icon';
+import { DrawerOverlay } from './DrawerOverlay';
 import type { MobileDrawerProps, DrawerSide, DrawerWidth } from './MobileDrawer.types';
 
 const widthStyles: Record<DrawerWidth, string> = {
@@ -29,6 +30,9 @@ export function MobileDrawer({
   width = 'md',
   title,
   showClose = true,
+  hideOverlay = false,
+  header,
+  footer,
   className,
   children,
 }: MobileDrawerProps) {
@@ -57,20 +61,25 @@ export function MobileDrawer({
     }
   }, [isOpen]);
 
+  // Lock body scroll when open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const sideStyle = sideStyles[side];
+  const showDefaultHeader = !header && (title || showClose);
 
   return (
     <>
       {/* Backdrop */}
-      <div
-        className={cn(
-          'fixed inset-0 bg-black/20 backdrop-blur-sm z-[55]',
-          'transition-opacity duration-300',
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        )}
-        onClick={onClose}
-        aria-hidden="true"
-      />
+      {!hideOverlay && <DrawerOverlay isOpen={isOpen} onClick={onClose} />}
 
       {/* Drawer */}
       <div
@@ -79,7 +88,7 @@ export function MobileDrawer({
         aria-modal="true"
         aria-label={title || 'Navigation menu'}
         className={cn(
-          'fixed inset-y-0 bg-white shadow-2xl z-[60]',
+          'fixed inset-y-0 bg-white shadow-2xl z-[60] flex flex-col',
           'transform transition-transform duration-300 ease-out',
           widthStyles[width],
           sideStyle.position,
@@ -87,8 +96,11 @@ export function MobileDrawer({
           className
         )}
       >
-        {/* Header */}
-        {(title || showClose) && (
+        {/* Custom Header */}
+        {header}
+
+        {/* Default Header */}
+        {showDefaultHeader && (
           <div className="flex items-center justify-between p-4 border-b border-gray-100">
             {title && (
               <span className="font-bold text-text-main">{title}</span>
@@ -112,9 +124,16 @@ export function MobileDrawer({
         )}
 
         {/* Content */}
-        <div className="p-4 overflow-y-auto h-full">
+        <div className="flex-1 p-4 overflow-y-auto">
           {children}
         </div>
+
+        {/* Footer */}
+        {footer && (
+          <div className="p-4 border-t border-gray-100">
+            {footer}
+          </div>
+        )}
       </div>
     </>
   );

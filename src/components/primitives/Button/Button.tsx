@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { cn } from '../../../utils/cn';
+import { Icon } from '../Icon';
 import type { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -24,6 +25,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       fullWidth = false,
       icon,
+      iconName,
       iconPosition = 'left',
       disabled,
       className,
@@ -33,6 +35,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || loading;
+    const iconElement = icon || (iconName ? <Icon name={iconName} size="sm" /> : null);
 
     return (
       <button
@@ -54,9 +57,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <span className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" />
         ) : (
           <>
-            {icon && iconPosition === 'left' && icon}
+            {iconElement && iconPosition === 'left' && iconElement}
             {children}
-            {icon && iconPosition === 'right' && icon}
+            {iconElement && iconPosition === 'right' && iconElement}
           </>
         )}
       </button>

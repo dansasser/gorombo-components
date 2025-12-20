@@ -1,5 +1,7 @@
+import type { ReactNode } from 'react';
 import { cn } from '../../../utils/cn';
 import { Icon } from '../../primitives/Icon';
+import { Button } from '../../primitives/Button';
 import type { PricingCardProps } from './PricingCard.types';
 
 export function PricingCard({
@@ -9,10 +11,22 @@ export function PricingCard({
   description,
   features,
   cta,
+  ctaLabel,
+  ctaHref,
   featured = false,
   badge,
   className,
-}: PricingCardProps) {
+  children,
+}: PricingCardProps & { children?: ReactNode }) {
+  const ctaElement = cta || (ctaLabel ? (
+    <Button
+      variant={featured ? 'primary' : 'outlined'}
+      fullWidth
+      onClick={ctaHref ? () => window.location.href = ctaHref : undefined}
+    >
+      {ctaLabel}
+    </Button>
+  ) : null);
   return (
     <div
       className={cn(
@@ -73,9 +87,9 @@ export function PricingCard({
       </ul>
 
       {/* CTA */}
-      {cta && (
+      {(ctaElement || children) && (
         <div className="mt-8">
-          {cta}
+          {ctaElement || children}
         </div>
       )}
     </div>

@@ -16,6 +16,12 @@ export interface MobileDrawerProps {
   title?: string;
   /** Show close button */
   showClose?: boolean;
+  /** Hide the built-in overlay (use DrawerOverlay separately for more control) */
+  hideOverlay?: boolean;
+  /** Custom header content (replaces default title/close button header) */
+  header?: ReactNode;
+  /** Footer content */
+  footer?: ReactNode;
   /** Additional CSS classes */
   className?: string;
   /** Drawer content */

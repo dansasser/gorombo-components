@@ -18,8 +18,12 @@ export interface PricingCardProps {
   description?: string;
   /** List of features */
   features: PricingFeature[];
-  /** Call-to-action button */
+  /** Call-to-action button (use slot="cta" in Astro) */
   cta?: ReactNode;
+  /** CTA button label - serializable alternative to cta prop */
+  ctaLabel?: string;
+  /** CTA button href - used with ctaLabel */
+  ctaHref?: string;
   /** Highlight this card as featured/recommended */
   featured?: boolean;
   /** Badge text (e.g., "Most Popular") */

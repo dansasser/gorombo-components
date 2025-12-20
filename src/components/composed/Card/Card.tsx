@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { cn } from '../../../utils/cn';
+import { Icon } from '../../primitives/Icon';
 import type {
   CardProps,
   CardVariant,
@@ -57,12 +58,14 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = 'Card';
 
-export function CardHeader({ icon, title, subtitle, className }: CardHeaderProps) {
+export function CardHeader({ icon, iconName, title, subtitle, className }: CardHeaderProps) {
+  const iconElement = icon || (iconName ? <Icon name={iconName} size="lg" /> : null);
+
   return (
     <div className={cn('flex items-start gap-4', className)}>
-      {icon && (
+      {iconElement && (
         <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-          {icon}
+          {iconElement}
         </div>
       )}
       <div className="flex-1 min-w-0">
