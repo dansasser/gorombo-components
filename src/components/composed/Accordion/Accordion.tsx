@@ -83,10 +83,7 @@ export function Accordion({
               <Icon
                 name="expand_more"
                 size="md"
-                className={cn(
-                  'transition-transform duration-200',
-                  isOpen && 'rotate-180'
-                )}
+                className={cn('transition-transform duration-200', isOpen && 'rotate-180')}
               />
             </button>
             <div

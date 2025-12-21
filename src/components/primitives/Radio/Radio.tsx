@@ -26,10 +26,7 @@ export function RadioGroup({
         </legend>
       )}
       <div
-        className={cn(
-          'flex gap-4',
-          orientation === 'vertical' && 'flex-col gap-2'
-        )}
+        className={cn('flex gap-4', orientation === 'vertical' && 'flex-col gap-2')}
         role="radiogroup"
       >
         {options.map((option) => {
@@ -62,16 +59,12 @@ export function RadioGroup({
                   className={cn(
                     'w-5 h-5 rounded-full border-2 transition-colors',
                     'flex items-center justify-center',
-                    isSelected
-                      ? 'border-primary'
-                      : 'border-gray-300',
+                    isSelected ? 'border-primary' : 'border-gray-300',
                     hasError && !isSelected && 'border-red-500',
                     'peer-focus:ring-2 peer-focus:ring-primary peer-focus:ring-offset-2'
                   )}
                 >
-                  {isSelected && (
-                    <div className="w-2.5 h-2.5 rounded-full bg-primary" />
-                  )}
+                  {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
                 </div>
               </div>
               <span className="text-sm text-text-main">{option.label}</span>
@@ -79,9 +72,7 @@ export function RadioGroup({
           );
         })}
       </div>
-      {error && (
-        <p className="text-sm text-red-500 mt-1">{error}</p>
-      )}
+      {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
     </fieldset>
   );
 }

@@ -39,14 +39,7 @@ export function Badge({
         className
       )}
     >
-      {dot && (
-        <span
-          className={cn(
-            'rounded-full bg-current',
-            dotSizeStyles[size]
-          )}
-        />
-      )}
+      {dot && <span className={cn('rounded-full bg-current', dotSizeStyles[size])} />}
       {!dot && icon && <span className="flex-shrink-0">{icon}</span>}
       {children}
     </span>

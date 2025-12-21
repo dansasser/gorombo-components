@@ -129,9 +129,7 @@ export function Drawer({
         {/* Default Header */}
         {showDefaultHeader && (
           <div className="flex items-center justify-between p-4 border-b border-gray-100">
-            {title && (
-              <span className="font-bold text-text-main">{title}</span>
-            )}
+            {title && <span className="font-bold text-text-main">{title}</span>}
             {showClose && (
               <button
                 type="button"
@@ -151,16 +149,10 @@ export function Drawer({
         )}
 
         {/* Content */}
-        <div className="flex-1 p-4 overflow-y-auto">
-          {children}
-        </div>
+        <div className="flex-1 p-4 overflow-y-auto">{children}</div>
 
         {/* Footer (slot="footer") */}
-        {footer && (
-          <div className="p-4 border-t border-gray-100">
-            {footer}
-          </div>
-        )}
+        {footer && <div className="p-4 border-t border-gray-100">{footer}</div>}
       </div>
     </>
   );

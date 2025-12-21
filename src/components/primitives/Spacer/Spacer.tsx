@@ -20,11 +20,7 @@ export function Spacer({ y, x, className }: SpacerProps) {
   const width = getSize(x);
 
   return (
-    <div
-      className={cn('flex-shrink-0', className)}
-      style={{ height, width }}
-      aria-hidden="true"
-    />
+    <div className={cn('flex-shrink-0', className)} style={{ height, width }} aria-hidden="true" />
   );
 }
 

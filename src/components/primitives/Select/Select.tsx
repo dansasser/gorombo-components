@@ -52,10 +52,7 @@ export function Select({
   const hasError = !!error;
 
   return (
-    <div
-      ref={containerRef}
-      className={cn('relative', fullWidth && 'w-full', className)}
-    >
+    <div ref={containerRef} className={cn('relative', fullWidth && 'w-full', className)}>
       {/* Hidden input for form submission */}
       <input type="hidden" name={name} value={selected} />
 
@@ -92,10 +89,7 @@ export function Select({
         <Icon
           name="expand_more"
           size="sm"
-          className={cn(
-            'transition-transform duration-200',
-            isOpen && 'rotate-180'
-          )}
+          className={cn('transition-transform duration-200', isOpen && 'rotate-180')}
         />
       </button>
 
@@ -133,12 +127,7 @@ export function Select({
 
       {/* Helper text / Error */}
       {(helperText || error) && (
-        <p
-          className={cn(
-            'mt-1.5 text-sm',
-            hasError ? 'text-red-500' : 'text-text-sub'
-          )}
-        >
+        <p className={cn('mt-1.5 text-sm', hasError ? 'text-red-500' : 'text-text-sub')}>
           {error || helperText}
         </p>
       )}

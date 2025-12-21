@@ -8,10 +8,14 @@ import type { NavigationProps, NavDropdownProps, NavLink } from './Navigation.ty
 export function NavDropdown({ label, items, className }: NavDropdownProps) {
   return (
     <div className={cn('nav-dropdown relative', className)}>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
         .nav-dropdown:hover .nav-dropdown-icon { transform: rotate(180deg); }
-      `}} />
+      `,
+        }}
+      />
       <button
         type="button"
         className={cn(
@@ -108,20 +112,12 @@ function NavItem({ link, isVertical }: { link: NavLink; isVertical: boolean }) {
   );
 }
 
-export function Navigation({
-  links,
-  orientation = 'horizontal',
-  className,
-}: NavigationProps) {
+export function Navigation({ links, orientation = 'horizontal', className }: NavigationProps) {
   const isVertical = orientation === 'vertical';
 
   return (
     <nav
-      className={cn(
-        'flex',
-        isVertical ? 'flex-col gap-1' : 'items-center gap-8',
-        className
-      )}
+      className={cn('flex', isVertical ? 'flex-col gap-1' : 'items-center gap-8', className)}
       role="navigation"
     >
       {links.map((link) => (

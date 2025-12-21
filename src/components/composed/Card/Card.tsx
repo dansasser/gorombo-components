@@ -24,14 +24,7 @@ const paddingStyles = {
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
-    {
-      variant = 'elevated',
-      interactive = false,
-      padding = 'md',
-      className,
-      children,
-      ...props
-    },
+    { variant = 'elevated', interactive = false, padding = 'md', className, children, ...props },
     ref
   ) => {
     return (
@@ -70,9 +63,7 @@ export function CardHeader({ icon, iconName, title, subtitle, className }: CardH
       )}
       <div className="flex-1 min-w-0">
         <h3 className="text-lg font-bold text-text-main">{title}</h3>
-        {subtitle && (
-          <p className="mt-1 text-sm text-text-sub">{subtitle}</p>
-        )}
+        {subtitle && <p className="mt-1 text-sm text-text-sub">{subtitle}</p>}
       </div>
     </div>
   );
@@ -81,21 +72,13 @@ export function CardHeader({ icon, iconName, title, subtitle, className }: CardH
 CardHeader.displayName = 'CardHeader';
 
 export function CardBody({ className, children }: CardBodyProps) {
-  return (
-    <div className={cn('mt-4', className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn('mt-4', className)}>{children}</div>;
 }
 
 CardBody.displayName = 'CardBody';
 
 export function CardFooter({ className, children }: CardFooterProps) {
-  return (
-    <div className={cn('mt-6 pt-4 border-t border-gray-100', className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn('mt-6 pt-4 border-t border-gray-100', className)}>{children}</div>;
 }
 
 CardFooter.displayName = 'CardFooter';

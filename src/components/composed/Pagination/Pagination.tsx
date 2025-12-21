@@ -87,17 +87,11 @@ export function Pagination({
           ) : (
             <li key={page}>
               {page === currentPage ? (
-                <span
-                  className={cn(buttonClass, 'bg-primary text-white')}
-                  aria-current="page"
-                >
+                <span className={cn(buttonClass, 'bg-primary text-white')} aria-current="page">
                   {page}
                 </span>
               ) : (
-                <a
-                  href={getPageUrl(baseUrl, page)}
-                  className={cn(buttonClass, 'text-text-main')}
-                >
+                <a href={getPageUrl(baseUrl, page)} className={cn(buttonClass, 'text-text-main')}>
                   {page}
                 </a>
               )}

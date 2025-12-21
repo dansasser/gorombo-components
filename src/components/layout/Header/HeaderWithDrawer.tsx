@@ -32,7 +32,15 @@ function DesktopDropdown({ label, items }: { label: string; items: NavLink[] }) 
 }
 
 // Mobile expandable submenu with border-left indicator
-function MobileSubmenu({ label, items, onItemClick }: { label: string; items: NavLink[]; onItemClick?: () => void }) {
+function MobileSubmenu({
+  label,
+  items,
+  onItemClick,
+}: {
+  label: string;
+  items: NavLink[];
+  onItemClick?: () => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -45,10 +53,7 @@ function MobileSubmenu({ label, items, onItemClick }: { label: string; items: Na
         <Icon
           name="expand_more"
           size="md"
-          className={cn(
-            'transition-transform duration-200',
-            isOpen && 'rotate-180'
-          )}
+          className={cn('transition-transform duration-200', isOpen && 'rotate-180')}
         />
       </button>
       <div
@@ -110,11 +115,7 @@ export function HeaderWithDrawer({
         <div className="hidden lg:flex flex-1 items-center justify-center gap-8">
           {links.map((link) =>
             link.children && link.children.length > 0 ? (
-              <DesktopDropdown
-                key={link.label}
-                label={link.label}
-                items={link.children}
-              />
+              <DesktopDropdown key={link.label} label={link.label} items={link.children} />
             ) : (
               <a
                 key={link.href}
@@ -155,9 +156,7 @@ export function HeaderWithDrawer({
             <a href={logoHref} className="flex items-center gap-2">
               <div className="w-6 h-6 text-primary">{logo}</div>
               {logoText && (
-                <span className="font-display font-bold text-lg text-text-main">
-                  {logoText}
-                </span>
+                <span className="font-display font-bold text-lg text-text-main">{logoText}</span>
               )}
             </a>
             <button

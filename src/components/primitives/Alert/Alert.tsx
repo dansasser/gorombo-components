@@ -42,11 +42,7 @@ export function Alert({
   return (
     <div
       role="alert"
-      className={cn(
-        'flex items-start gap-3 p-4 rounded-lg border',
-        styles.bg,
-        className
-      )}
+      className={cn('flex items-start gap-3 p-4 rounded-lg border', styles.bg, className)}
     >
       <Icon
         name={iconName || styles.icon}
@@ -54,14 +50,8 @@ export function Alert({
         className={cn('flex-shrink-0', styles.iconColor)}
       />
       <div className="flex-1 min-w-0">
-        {title && (
-          <p className="font-medium text-text-main">{title}</p>
-        )}
-        {children && (
-          <div className={cn('text-sm text-text-sub', title && 'mt-1')}>
-            {children}
-          </div>
-        )}
+        {title && <p className="font-medium text-text-main">{title}</p>}
+        {children && <div className={cn('text-sm text-text-sub', title && 'mt-1')}>{children}</div>}
       </div>
       {dismissible && (
         <button
