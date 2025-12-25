@@ -24,26 +24,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn('flex flex-col gap-1.5', fullWidth && 'w-full')}>
         {label && (
-          <label
-            htmlFor={id}
-            className="text-sm font-medium text-text-main"
-          >
+          <label htmlFor={id} className="text-sm font-medium text-text-main">
             {label}
           </label>
         )}
         <div className="relative">
           {icon && iconPosition === 'left' && (
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-sub">
-              {icon}
-            </span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-sub">{icon}</span>
           )}
           <input
             ref={ref}
             id={id}
             aria-invalid={hasError}
-            aria-describedby={
-              hasError ? `${id}-error` : helperText ? `${id}-helper` : undefined
-            }
+            aria-describedby={hasError ? `${id}-error` : helperText ? `${id}-helper` : undefined}
             className={cn(
               'w-full h-12 px-4 rounded-lg border bg-background-off',
               'text-text-main placeholder:text-text-sub',
@@ -59,9 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {icon && iconPosition === 'right' && (
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-sub">
-              {icon}
-            </span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-sub">{icon}</span>
           )}
         </div>
         {hasError && (

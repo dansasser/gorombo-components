@@ -3,9 +3,9 @@ import type { IconProps, IconSize } from './Icon.types';
 
 const sizeStyles: Record<IconSize, string> = {
   sm: 'text-base', // 16px
-  md: 'text-xl',   // 20px
-  lg: 'text-2xl',  // 24px
-  xl: 'text-3xl',  // 30px
+  md: 'text-xl', // 20px
+  lg: 'text-2xl', // 24px
+  xl: 'text-3xl', // 30px
 };
 
 const sizePixels: Record<IconSize, number> = {

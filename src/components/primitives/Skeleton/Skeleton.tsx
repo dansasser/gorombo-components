@@ -27,12 +27,7 @@ export function Skeleton({
 
   return (
     <div
-      className={cn(
-        'bg-gray-200',
-        variantStyles[variant],
-        animationStyles[animation],
-        className
-      )}
+      className={cn('bg-gray-200', variantStyles[variant], animationStyles[animation], className)}
       style={style}
       aria-hidden="true"
     />

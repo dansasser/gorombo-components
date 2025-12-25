@@ -34,10 +34,7 @@ export function Tabs({
   return (
     <div className={className}>
       {/* Tab List */}
-      <div
-        role="tablist"
-        className={cn('flex', fullWidth && 'w-full', styles.list)}
-      >
+      <div role="tablist" className={cn('flex', fullWidth && 'w-full', styles.list)}>
         {items.map((item) => (
           <button
             key={item.id}

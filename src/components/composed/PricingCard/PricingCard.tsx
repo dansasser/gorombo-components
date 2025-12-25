@@ -18,15 +18,17 @@ export function PricingCard({
   className,
   children,
 }: PricingCardProps & { children?: ReactNode }) {
-  const ctaElement = cta || (ctaLabel ? (
-    <Button
-      variant={featured ? 'primary' : 'outlined'}
-      fullWidth
-      onClick={ctaHref ? () => window.location.href = ctaHref : undefined}
-    >
-      {ctaLabel}
-    </Button>
-  ) : null);
+  const ctaElement =
+    cta ||
+    (ctaLabel ? (
+      <Button
+        variant={featured ? 'primary' : 'outlined'}
+        fullWidth
+        onClick={ctaHref ? () => (window.location.href = ctaHref) : undefined}
+      >
+        {ctaLabel}
+      </Button>
+    ) : null);
   return (
     <div
       className={cn(
@@ -50,17 +52,13 @@ export function PricingCard({
       {/* Header */}
       <div className="text-center">
         <h3 className="text-xl font-bold text-text-main">{name}</h3>
-        {description && (
-          <p className="mt-2 text-sm text-text-sub">{description}</p>
-        )}
+        {description && <p className="mt-2 text-sm text-text-sub">{description}</p>}
       </div>
 
       {/* Price */}
       <div className="mt-6 text-center">
         <span className="text-4xl font-bold text-text-main">{price}</span>
-        {period && (
-          <span className="text-text-sub">{period}</span>
-        )}
+        {period && <span className="text-text-sub">{period}</span>}
       </div>
 
       {/* Features */}
@@ -68,10 +66,7 @@ export function PricingCard({
         {features.map((feature, index) => (
           <li
             key={index}
-            className={cn(
-              'flex items-start gap-3',
-              !feature.included && 'opacity-50'
-            )}
+            className={cn('flex items-start gap-3', !feature.included && 'opacity-50')}
           >
             <Icon
               name={feature.included !== false ? 'check_circle' : 'cancel'}
@@ -87,11 +82,7 @@ export function PricingCard({
       </ul>
 
       {/* CTA */}
-      {(ctaElement || children) && (
-        <div className="mt-8">
-          {ctaElement || children}
-        </div>
-      )}
+      {(ctaElement || children) && <div className="mt-8">{ctaElement || children}</div>}
     </div>
   );
 }

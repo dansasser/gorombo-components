@@ -48,13 +48,7 @@ export function ToastContainer({
   if (visibleToasts.length === 0) return null;
 
   return (
-    <div
-      className={cn(
-        'fixed z-[200] flex flex-col gap-2',
-        positionStyles[position],
-        className
-      )}
-    >
+    <div className={cn('fixed z-[200] flex flex-col gap-2', positionStyles[position], className)}>
       {visibleToasts.map((toast) => {
         const styles = typeStyles[toast.type];
 
@@ -72,9 +66,7 @@ export function ToastContainer({
             <Icon name={styles.icon} size="md" className={styles.iconColor} />
             <div className="flex-1 min-w-0">
               <p className="font-medium text-text-main">{toast.title}</p>
-              {toast.message && (
-                <p className="mt-1 text-sm text-text-sub">{toast.message}</p>
-              )}
+              {toast.message && <p className="mt-1 text-sm text-text-sub">{toast.message}</p>}
             </div>
             <button
               type="button"

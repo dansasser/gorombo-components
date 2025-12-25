@@ -5,26 +5,26 @@
   --color-primary-light: #3d8ab0;
 
   /* Colors - Secondary */
-  --color-secondary: #7BCFE8;
+  --color-secondary: #7bcfe8;
   --color-secondary-dark: #5bb8d4;
   --color-secondary-light: #a3e0f2;
 
   /* Colors - Accent */
-  --color-accent: #E8734A;
+  --color-accent: #e8734a;
   --color-accent-hover: #d65f36;
   --color-accent-light: #f09070;
 
   /* Colors - Background */
-  --color-background-light: #FFFFFF;
-  --color-background-off: #F5F7FA;
+  --color-background-light: #ffffff;
+  --color-background-off: #f5f7fa;
   --color-background-dark: #141b1e;
-  --color-background-dark-alt: #1A2E3D;
+  --color-background-dark-alt: #1a2e3d;
 
   /* Colors - Text */
-  --color-text-main: #1A2E3D;
+  --color-text-main: #1a2e3d;
   --color-text-sub: #5c7a8a;
   --color-text-light: #8ca3b0;
-  --color-text-inverse: #FFFFFF;
+  --color-text-inverse: #ffffff;
 
   /* Colors - Border */
   --color-border: #e5e7eb;

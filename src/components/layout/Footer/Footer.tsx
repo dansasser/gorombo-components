@@ -11,12 +11,7 @@ export function Footer({
   className,
 }: FooterProps) {
   return (
-    <footer
-      className={cn(
-        'bg-white border-t border-gray-100 pt-16 pb-8',
-        className
-      )}
-    >
+    <footer className={cn('bg-white border-t border-gray-100 pt-16 pb-8', className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top section: Logo/tagline left, links right */}
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
@@ -25,15 +20,11 @@ export function Footer({
             <div className="flex items-center gap-2 mb-2">
               {logo && <div className="w-8 h-8 text-primary">{logo}</div>}
               {brandName && (
-                <span className="font-display font-bold text-xl text-text-main">
-                  {brandName}
-                </span>
+                <span className="font-display font-bold text-xl text-text-main">{brandName}</span>
               )}
             </div>
             {tagline && (
-              <p className="text-text-sub text-sm max-w-xs text-center md:text-left">
-                {tagline}
-              </p>
+              <p className="text-text-sub text-sm max-w-xs text-center md:text-left">{tagline}</p>
             )}
           </div>
 
@@ -56,9 +47,7 @@ export function Footer({
         {/* Bottom bar: Copyright and social */}
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Copyright */}
-          {copyright && (
-            <p className="text-text-sub text-sm">{copyright}</p>
-          )}
+          {copyright && <p className="text-text-sub text-sm">{copyright}</p>}
 
           {/* Social links */}
           {social.length > 0 && (

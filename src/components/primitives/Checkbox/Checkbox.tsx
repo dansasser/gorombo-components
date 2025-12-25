@@ -40,9 +40,7 @@ export function Checkbox({
             className={cn(
               'w-5 h-5 rounded border-2 transition-colors',
               'flex items-center justify-center',
-              checked
-                ? 'bg-primary border-primary'
-                : 'bg-white border-gray-300',
+              checked ? 'bg-primary border-primary' : 'bg-white border-gray-300',
               hasError && !checked && 'border-red-500',
               'peer-focus:ring-2 peer-focus:ring-primary peer-focus:ring-offset-2'
             )}

@@ -43,11 +43,13 @@ export function Popover({
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  const triggerElement = trigger || (triggerLabel ? (
-    <Button variant="secondary" onClick={() => setIsOpen(!isOpen)}>
-      {triggerLabel}
-    </Button>
-  ) : null);
+  const triggerElement =
+    trigger ||
+    (triggerLabel ? (
+      <Button variant="secondary" onClick={() => setIsOpen(!isOpen)}>
+        {triggerLabel}
+      </Button>
+    ) : null);
 
   return (
     <div ref={containerRef} className="relative inline-block">

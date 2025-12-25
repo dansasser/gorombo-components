@@ -51,10 +51,7 @@ export function Header({
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           {(logo || logoText) && (
-            <a
-              href={logoHref}
-              className="flex-shrink-0 flex items-center gap-2 cursor-pointer"
-            >
+            <a href={logoHref} className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
               {logo && <div className="w-8 h-8 text-primary">{logo}</div>}
               {logoText && (
                 <span className="font-display font-bold text-xl text-text-main tracking-tight">
@@ -65,18 +62,10 @@ export function Header({
           )}
 
           {/* Desktop Navigation (slot="nav") */}
-          {nav && (
-            <div className="hidden lg:flex flex-1 items-center justify-center">
-              {nav}
-            </div>
-          )}
+          {nav && <div className="hidden lg:flex flex-1 items-center justify-center">{nav}</div>}
 
           {/* Desktop Actions (slot="actions") */}
-          {actions && (
-            <div className="hidden lg:flex items-center gap-4">
-              {actions}
-            </div>
-          )}
+          {actions && <div className="hidden lg:flex items-center gap-4">{actions}</div>}
 
           {/* Mobile Hamburger - calls store to open drawer */}
           {showMobileMenu && (

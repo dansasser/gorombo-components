@@ -27,13 +27,7 @@ export function Section({
   const isDark = background === 'dark';
 
   return (
-    <Component
-      className={cn(
-        backgroundStyles[background],
-        spacingStyles[spacing],
-        className
-      )}
-    >
+    <Component className={cn(backgroundStyles[background], spacingStyles[spacing], className)}>
       <Container>
         {(title || subtitle) && (
           <div className={cn('mb-12', centered && 'text-center')}>

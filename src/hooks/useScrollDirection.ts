@@ -13,9 +13,7 @@ interface UseScrollDirectionOptions {
  * @param options.threshold - Minimum scroll delta to trigger direction change (default: 10)
  * @param options.initialDirection - Initial direction value (default: null)
  */
-export function useScrollDirection(
-  options: UseScrollDirectionOptions = {}
-): ScrollDirection {
+export function useScrollDirection(options: UseScrollDirectionOptions = {}): ScrollDirection {
   const { threshold = 10, initialDirection = null } = options;
   const [direction, setDirection] = useState<ScrollDirection>(initialDirection);
   const lastScrollY = useRef(0);

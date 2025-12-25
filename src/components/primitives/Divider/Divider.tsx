@@ -25,9 +25,7 @@ export function Divider({
         'border-gray-200',
         variantStyles[variant],
         spacingStyles[spacing],
-        orientation === 'horizontal'
-          ? 'border-t w-full'
-          : 'border-l h-full',
+        orientation === 'horizontal' ? 'border-t w-full' : 'border-l h-full',
         className
       )}
     />

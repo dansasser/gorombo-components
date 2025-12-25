@@ -2,11 +2,7 @@ import { cn } from '../../../utils/cn';
 import { Icon } from '../../primitives/Icon';
 import type { BreadcrumbsProps } from './Breadcrumbs.types';
 
-export function Breadcrumbs({
-  items,
-  separator = '/',
-  className,
-}: BreadcrumbsProps) {
+export function Breadcrumbs({ items, separator = '/', className }: BreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb" className={className}>
       <ol className="flex items-center gap-2 text-sm">

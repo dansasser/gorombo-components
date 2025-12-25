@@ -89,12 +89,7 @@ export function Hero({
               </p>
             )}
             {actions && (
-              <div
-                className={cn(
-                  'mt-8 flex flex-wrap gap-4',
-                  !isTwoColumn && 'justify-center'
-                )}
-              >
+              <div className={cn('mt-8 flex flex-wrap gap-4', !isTwoColumn && 'justify-center')}>
                 {actions}
               </div>
             )}
@@ -102,11 +97,7 @@ export function Hero({
           </div>
 
           {/* Media content (twoColumn only) */}
-          {isTwoColumn && media && (
-            <div className="order-2">
-              {media}
-            </div>
-          )}
+          {isTwoColumn && media && <div className="order-2">{media}</div>}
         </div>
       </Container>
     </section>

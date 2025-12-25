@@ -44,10 +44,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className={cn('flex flex-col gap-1.5', fullWidth && 'w-full')}>
         {label && (
-          <label
-            htmlFor={id}
-            className="text-sm font-medium text-text-main"
-          >
+          <label htmlFor={id} className="text-sm font-medium text-text-main">
             {label}
           </label>
         )}
@@ -56,9 +53,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={id}
           rows={rows}
           aria-invalid={hasError}
-          aria-describedby={
-            hasError ? `${id}-error` : helperText ? `${id}-helper` : undefined
-          }
+          aria-describedby={hasError ? `${id}-error` : helperText ? `${id}-helper` : undefined}
           onChange={handleChange}
           className={cn(
             'w-full p-4 rounded-lg border bg-background-off',
