@@ -53,13 +53,13 @@ jobs:
           npm pack --dry-run
 
       - name: Publish to npm
-        if: ${{ !inputs.dry_run }}
+        if: github.event_name == 'push' || !inputs.dry_run
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Dry run publish
-        if: ${{ inputs.dry_run }}
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run
         run: |
           echo "DRY RUN - Would publish:"
           npm pack --dry-run
