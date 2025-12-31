@@ -1,6 +1,36 @@
+import { useState, useEffect } from 'react';
 import { cn } from '../../../utils/cn';
 import { Icon } from '../../primitives/Icon';
 import type { NavigationProps, NavDropdownProps, NavLink } from './Navigation.types';
+
+/**
+ * Hook to track current path, updating on client-side navigation
+ * Works with Astro's ClientRouter (View Transitions)
+ */
+function useCurrentPath(initialPath?: string): string | undefined {
+  const [currentPath, setCurrentPath] = useState(initialPath);
+
+  useEffect(() => {
+    // Update to actual path on mount
+    setCurrentPath(window.location.pathname);
+
+    const updatePath = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    // Astro View Transitions fire this event after navigation
+    document.addEventListener('astro:after-swap', updatePath);
+    // Browser back/forward buttons
+    window.addEventListener('popstate', updatePath);
+
+    return () => {
+      document.removeEventListener('astro:after-swap', updatePath);
+      window.removeEventListener('popstate', updatePath);
+    };
+  }, []);
+
+  return currentPath;
+}
 
 /**
  * Compare paths for active state (handles trailing slashes)
@@ -156,6 +186,8 @@ export function Navigation({
   className,
 }: NavigationProps) {
   const isVertical = orientation === 'vertical';
+  // Use hook to track path changes from client-side navigation
+  const currentPath = useCurrentPath(activePath);
 
   return (
     <nav
@@ -163,7 +195,7 @@ export function Navigation({
       role="navigation"
     >
       {links.map((link) => (
-        <NavItem key={link.href} link={link} isVertical={isVertical} activePath={activePath} />
+        <NavItem key={link.href} link={link} isVertical={isVertical} activePath={currentPath} />
       ))}
     </nav>
   );
