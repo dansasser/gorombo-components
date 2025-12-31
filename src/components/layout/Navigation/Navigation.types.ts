@@ -21,6 +21,8 @@ export interface NavigationProps {
   links: import('../Header/Header.types').NavLink[];
   /** Orientation of the navigation */
   orientation?: 'horizontal' | 'vertical';
+  /** Current page path for active link highlighting */
+  activePath?: string;
   /** Additional CSS classes */
   className?: string;
 }
