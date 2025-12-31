@@ -3,9 +3,25 @@ import { Icon } from '../../primitives/Icon';
 import type { NavigationProps, NavDropdownProps, NavLink } from './Navigation.types';
 
 /**
- * Desktop dropdown - CSS hover only, no JS
+ * Compare paths for active state (handles trailing slashes)
  */
-export function NavDropdown({ label, items, className }: NavDropdownProps) {
+function isActive(href: string | undefined, activePath: string | undefined): boolean {
+  if (!href || !activePath) return false;
+  const normHref = href.replace(/\/$/, '') || '/';
+  const normActive = activePath.replace(/\/$/, '') || '/';
+  return normHref === normActive;
+}
+
+/**
+ * Desktop dropdown - CSS hover only, no JS
+ * Parent button never highlights - only children do
+ */
+export function NavDropdown({
+  label,
+  items,
+  activePath,
+  className,
+}: NavDropdownProps & { activePath?: string }) {
   return (
     <div className={cn('nav-dropdown relative', className)}>
       <style
@@ -42,7 +58,8 @@ export function NavDropdown({ label, items, className }: NavDropdownProps) {
             key={item.href}
             href={item.href}
             className={cn(
-              'block px-4 py-2 text-sm text-text-main',
+              'block px-4 py-2 text-sm',
+              isActive(item.href, activePath) ? 'text-primary bg-gray-50' : 'text-text-main',
               'hover:bg-gray-50 hover:text-primary transition-colors'
             )}
           >
@@ -58,8 +75,17 @@ NavDropdown.displayName = 'NavDropdown';
 
 /**
  * Vertical accordion using native details/summary - no JS needed
+ * Parent summary never highlights - only children do
  */
-function NavAccordion({ label, items }: { label: string; items: NavLink[] }) {
+function NavAccordion({
+  label,
+  items,
+  activePath,
+}: {
+  label: string;
+  items: NavLink[];
+  activePath?: string;
+}) {
   return (
     <details className="w-full">
       <summary
@@ -78,7 +104,8 @@ function NavAccordion({ label, items }: { label: string; items: NavLink[] }) {
             key={item.href}
             href={item.href}
             className={cn(
-              'block py-1 text-sm text-text-sub',
+              'block py-1 text-sm',
+              isActive(item.href, activePath) ? 'text-primary' : 'text-text-sub',
               'hover:text-primary transition-colors'
             )}
           >
@@ -90,19 +117,29 @@ function NavAccordion({ label, items }: { label: string; items: NavLink[] }) {
   );
 }
 
-function NavItem({ link, isVertical }: { link: NavLink; isVertical: boolean }) {
+function NavItem({
+  link,
+  isVertical,
+  activePath,
+}: {
+  link: NavLink;
+  isVertical: boolean;
+  activePath?: string;
+}) {
   if (link.children && link.children.length > 0) {
     if (isVertical) {
-      return <NavAccordion label={link.label} items={link.children} />;
+      return <NavAccordion label={link.label} items={link.children} activePath={activePath} />;
     }
-    return <NavDropdown label={link.label} items={link.children} />;
+    return <NavDropdown label={link.label} items={link.children} activePath={activePath} />;
   }
 
+  const active = isActive(link.href, activePath);
   return (
     <a
       href={link.href}
       className={cn(
-        'font-medium text-text-main',
+        'font-medium',
+        active ? 'text-primary' : 'text-text-main',
         'hover:text-primary transition-colors',
         isVertical ? 'text-base py-2 block' : 'text-sm'
       )}
@@ -112,7 +149,12 @@ function NavItem({ link, isVertical }: { link: NavLink; isVertical: boolean }) {
   );
 }
 
-export function Navigation({ links, orientation = 'horizontal', className }: NavigationProps) {
+export function Navigation({
+  links,
+  orientation = 'horizontal',
+  activePath,
+  className,
+}: NavigationProps) {
   const isVertical = orientation === 'vertical';
 
   return (
@@ -121,7 +163,7 @@ export function Navigation({ links, orientation = 'horizontal', className }: Nav
       role="navigation"
     >
       {links.map((link) => (
-        <NavItem key={link.href} link={link} isVertical={isVertical} />
+        <NavItem key={link.href} link={link} isVertical={isVertical} activePath={activePath} />
       ))}
     </nav>
   );
